@@ -13,7 +13,7 @@ return {
 		    def = vim.fn.stdpath("config")
 		}
 	    end)
-	    vim.keymap.set("n", "<leader>m", require('telescope.builtin').man_pages) 
+	    vim.keymap.set("n", "<leader>m", require('telescope.builtin').Man) 
 	end
     }
 }
