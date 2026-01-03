@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "nvim-lspconfig": {
+      "rev": "ac04ec3",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "telescope.nvim": {
+      "rev": "3333a52",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
+    }
+  }
+}
