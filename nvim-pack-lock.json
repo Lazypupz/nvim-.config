@@ -7,6 +7,10 @@
     "telescope.nvim": {
       "rev": "3333a52",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "typst-preview.nvim": {
+      "rev": "bf5d5ea",
+      "src": "https://github.com/chomosuke/typst-preview.nvim.git"
     }
   }
 }

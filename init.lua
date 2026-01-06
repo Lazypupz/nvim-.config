@@ -8,20 +8,22 @@ vim.opt.wrap = false
 vim.opt.tabstop = 4
 vim.opt.swapfile = false
 vim.opt.signcolumn = "yes"
-vim.opt.winborder = "rounded"
+vim.opt.winborder = "double"
 
 vim.g.mapleader = " "
 local map = vim.keymap.set
 
 map('n', '<leader>pv', vim.cmd.Ex)
 map('n', '<leader>o', ':update<CR> :source<CR>')
+--map('t', '^[', "^\^N")
+--map('t', '^O', "^\^O")
 
 vim.pack.add({
-    {src = "https://github.com/neovim/nvim-lspconfig"},
-	{src = "https://github.com/nvim-telescope/telescope.nvim"}
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/chomosuke/typst-preview.nvim.git"}
 })
 
-require("config.plugins.telescope")
 
 vim.lsp.config['lua_ls'] = {
 	cmd = { 'lua-language-server' },
@@ -32,21 +34,35 @@ vim.lsp.config['lua_ls'] = {
 		Lua = {
 			runtime = {
 				version = 'LuaJIT',
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true)
 			}
 		}
 	}
 }
 vim.lsp.config['clangd'] = {
 
-	cmd = { 'clangd'},
+	cmd = { 'clangd' },
 
-	rootmarkers = { '.clangd', 'compile_commands.json'},
+	rootmarkers = { '.clangd', 'compile_commands.json' },
 
-	filestypes = {'c', 'cpp'}
+	filestypes = { 'c', 'cpp' }
 }
 
-vim.lsp.enable({"lua_ls", "clangd"})
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.lsp.config['tinymist'] = {
+	cmd = {'tinymist'},
+
+	filetypes = {'typst'},
+
+	settings = {
+		formatterMode = "typstyle"
+	}
+}
+vim.lsp.enable({ "lua_ls", "clangd", "tinymist" })
+require('config.plugins.typst-preview')
+	
+map('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.cmd("colorscheme darkblue")
 
